@@ -1,0 +1,25 @@
+ion-content {
+    h4 {
+        margin: 20px 0px;
+        color: #053167;
+        text-decoration: underline;
+    }
+    .top_feilds {
+        ion-item {
+            ion-label {
+                white-space: inherit;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+    .feild_bottom {
+        p {
+            color: #b0423b;
+        }
+        ion-label {
+            color: #2198c5;
+            padding-left: 5px;
+        }
+    }
+}

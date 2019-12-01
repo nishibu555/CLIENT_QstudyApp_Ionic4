@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding text-center>
+    <h4>Select Your Course</h4>
+    <div class="top_feilds">
+        <ion-item color="primary" *ngFor="let course of courses">
+            <ion-checkbox slot="end" (ionChange)="selected_course($event, course.id, course.courseCost)"></ion-checkbox>
+            <ion-label>{{course.courseName}} $ {{course.courseCost}}</ion-label>
+        </ion-item>
+    </div>
+    <br/> <br/>
+    <div class="feild_bottom">
+        <ion-item no-padding>
+            <ion-label>Number of children</ion-label>
+            <ion-select (ionChange)="selected_children($event)" >
+                <ion-select-option value="1" selected>01</ion-select-option>
+                <ion-select-option value="2">02</ion-select-option>
+                <ion-select-option value="3">03</ion-select-option>
+                <ion-select-option value="4">04</ion-select-option>
+                <ion-select-option value="5">05</ion-select-option>
+                <ion-select-option value="6">06</ion-select-option>
+                <ion-select-option value="7">07</ion-select-option>
+                <ion-select-option value="8">08</ion-select-option>
+                <ion-select-option value="9">09</ion-select-option>
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+                <ion-select-option value="12">12</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item no-padding>
+            <ion-label>Package</ion-label>
+            <ion-select (ionChange)="selected_payment($event)" >
+                <ion-select-option value="1" selected>Per month</ion-select-option>
+                <ion-select-option value="2">6 Months</ion-select-option>
+                <ion-select-option value="3">1Year</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item no-padding color="light">
+            <ion-label>Total</ion-label>
+            <ion-input text-right type="" value="${{total_course_cost}}" readonly></ion-input>
+        </ion-item>
+        <br/>
+        <p><b>“Your membership will be renewed automatically. You may cencel anytime ” </b></p>
+    </div>
+
+    <br/><br/>
+    <ion-button class="btn_next" (click)="save()" disabled="{{disabled}}">
+        <ion-icon name="paper-plane"></ion-icon> Save & Proceed
+    </ion-button>
+</ion-content>

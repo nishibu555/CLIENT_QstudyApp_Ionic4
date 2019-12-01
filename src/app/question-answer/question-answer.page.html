@@ -1,0 +1,173 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+      <ion-title slot="start">
+          <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+      </ion-title>
+      <div class="heade_extra_menu" slot="end">
+          <div>
+              <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+          </div>
+      </div>
+      <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+         <ion-col size="3" class="links">INDEX</ion-col> 
+         <ion-col size="6" class="links"><ion-icon name="play"></ion-icon>Subject Vedio</ion-col> 
+         <ion-col size="3" style="text-align: right;" class="links"  (click)="show_mark = !show_mark">Marks</ion-col> 
+      </ion-row>
+    </ion-grid>
+
+
+    <div *ngIf="show_mark">
+        <ion-grid>
+          <ion-row style="background-color: #9c4d9e;color:white;">
+            <ion-col size="11">{{module_name}}</ion-col>
+            <ion-col size="1" (click)="show_mark = false"><ion-icon name="close"></ion-icon></ion-col>
+          </ion-row>
+          <ion-row style="background-color: #9c4d9e;color:white;">
+            <ion-col size="1" class="mark_col"></ion-col>
+            <ion-col size="2" class="mark_col">SL</ion-col>
+            <ion-col size="3" class="mark_col">Mark</ion-col>
+            <ion-col size="3" class="mark_col">Obtained</ion-col>
+            <ion-col size="3" class="mark_col">Description</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let q of all_question">
+            <ion-col size="1" class="mark_col"><ion-icon name="close"></ion-icon></ion-col>
+            <ion-col size="2" class="mark_col">{{q.question_order}}</ion-col>
+            <ion-col size="3" class="mark_col">{{q.questionMarks}}</ion-col>
+            <ion-col size="3" class="mark_col">
+              <!-- <span *ngIf="ready==true">{{progress_card[q].obtained}}</span> -->
+            </ion-col>
+            <ion-col size="3" class="mark_col"><ion-icon name="list-box"></ion-icon></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Total:</ion-col>
+            <ion-col size="3">{{total_mark}}</ion-col>
+          </ion-row>
+        </ion-grid>
+    </div>
+
+
+ <!-- vpcubulary -->
+    <div  *ngIf="all_question.length>0  && all_question[qIndex].questionType==3">
+      <ion-card>
+        <ion-card-header>
+            <ion-card-title>Question<span class="right">Instruction<ion-icon name="list-box"></ion-icon></span></ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-no-padding">
+          <ion-grid>
+            <ion-row>
+                <ion-col size="12">Word ?</ion-col>
+                <ion-col size="4" >Definition:</ion-col>
+                <ion-col size="8" > {{all_question[qIndex].questionName.definition}}</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="4" >Parts of speech:</ion-col>
+                <ion-col size="8" > {{all_question[qIndex].questionName.parts_of_speech}}</ion-col>
+            </ion-row>
+            <ion-row  *ngIf="all_question[qIndex].questionName.synonym != ''">
+                <ion-col size="4" >Synonym:</ion-col>
+                <ion-col size="8" > {{all_question[qIndex].questionName.synonym}}</ion-col>
+            </ion-row>
+            <ion-row *ngIf="all_question[qIndex].questionName.antonym != ''">
+                <ion-col size="4" >Antonym:</ion-col>
+                <ion-col size="8" > {{all_question[qIndex].questionName.antonym}}</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="4" >Hint:</ion-col>
+                <ion-col size="8" (click)="show_hint(all_question[qIndex].questionName.sentence)"><ion-icon name="list-box"></ion-icon></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="4" >Speech to text:</ion-col>
+                <ion-col size="8" ><ion-icon name="mic" style="zoom:2" (click)="speak(all_question[qIndex].answer)"></ion-icon><small style="color: red;">Listening to audio will deduct 2 number</small></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card>
+        <ion-card-header>
+            <ion-card-title>Answer</ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+           <p [innerHTML]="all_question[qIndex].questionName.vocubulary_image[0]"></p>
+              <form [formGroup]="form">
+                  <div class="ans_input">
+                  <ion-input formControlName="ans" type="text" placeholder="Write your answer"></ion-input>
+                  </div>
+                  <small style="color:#fc7303" *ngIf="!form.controls.ans.valid  && submitAttempt">Please enter answer.</small>
+                  <ion-button (click)="vocubulary_ans()" expand="block">Submit</ion-button>
+              </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  
+  <!-- multiple choice -->
+  <div  *ngIf="all_question.length>0  && all_question[qIndex].questionType==4">
+      <ion-card>
+        <ion-card-header>
+            <ion-card-title>Question<span class="right">Instruction<ion-icon name="list-box"></ion-icon></span></ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-no-padding">
+           <div [innerHTML]="all_question[qIndex].questionName.questionName" class="mcq"></div>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card>
+        <ion-card-header>
+            <ion-card-title>Answer</ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="text-align: center; padding-top:10px">
+            <ion-radio-group allow-empty-selection = "true" (ionChange)="mc_ans($event)">
+            <div class="mc_options" *ngFor="let option of all_question[qIndex].questionName.vocubulary_image; let i=index">
+              <div>
+                  <span class="mc_letter">{{alphabets[i]}}</span>
+                  <span style="float: right;">
+                        <ion-radio value="{{i+1}}"></ion-radio>
+                  </span>
+                  <div [innerHTML]="option" class="mc_image"></div>
+              </div> 
+            </div>
+            </ion-radio-group>
+        </ion-card-content>
+      </ion-card>
+  </div>
+
+  <!-- matching -->
+  <div *ngIf="all_question.length>0  && all_question[qIndex].questionType==7">
+    <ion-grid>
+      <ion-row style="font-size: 14px;" *ngFor="let left of all_question[qIndex].questionName.left_side; let i=index">
+          <ion-col size="6" >
+             <span [innerHTML]="left"></span>
+          </ion-col>
+          <ion-col size="1" style="font-size: 11px;">
+              <ion-radio-group allow-empty-selection = "true" (ionChange)="question_side($event)">
+                  <ion-radio value="{{i+1}}"></ion-radio>
+              </ion-radio-group>
+          </ion-col>
+          <ion-col size="1">
+              <ion-radio-group allow-empty-selection = "true"  (ionChange)="ans_side($event)">
+                  <ion-radio value="{{i}}"></ion-radio>
+              </ion-radio-group>
+          </ion-col>
+          <ion-col size="4" [innerHTML]="all_question[qIndex].questionName.right_side[i]"></ion-col>
+      </ion-row>
+    </ion-grid>
+    <div style="padding: 10px;">
+        <ion-button (click)="macthing_ans()" expand="block">Submit</ion-button>
+    </div>
+  </div>
+
+
+</ion-content>

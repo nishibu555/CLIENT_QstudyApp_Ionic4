@@ -1,0 +1,91 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="top_parent_info">
+        <h4>All fields are mandatory</h4>
+        <form [formGroup]="form">
+                <ion-item no-padding>
+                    <ion-label position="floating">Parent’s Name</ion-label>
+                    <ion-input formControlName="parent_name" type="text"></ion-input>
+                </ion-item>
+                <small class="error_msg" *ngIf="!form.controls.parent_name.valid  && submitAttempt">Please enter parent's name.</small>
+
+                <ion-item no-padding>
+                    <ion-label position="floating">Email Adress</ion-label>
+                    <ion-input formControlName="email" type="email"></ion-input>
+                </ion-item>
+                <small class="error_msg" *ngIf="!form.controls.email.valid  && submitAttempt">Please enter a valid email.</small><br/>
+                <small class="hint">Your email adress also your username</small>
+
+                <ion-item no-padding>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input formControlName="password" type="password"></ion-input>
+                </ion-item>
+                <small class="error_msg" *ngIf="!form.controls.password.valid  && submitAttempt">Please enter password.</small>
+
+                <ion-item no-padding>
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input formControlName="confirm_password" type="password"></ion-input>
+                </ion-item>
+                <small class="error_msg" *ngIf="notMatched">Password and confirm password must be same.</small><br/>
+                <small class="error_msg" *ngIf="!form.controls.confirm_password.valid  && submitAttempt">Please re-enter password.</small>
+
+                <ion-item no-padding>
+                    <ion-label position="floating">Mobile No</ion-label>
+                    <ion-input formControlName="mobile" type="text"></ion-input>
+                </ion-item>
+                <small class="error_msg" *ngIf="!form.controls.mobile.valid  && submitAttempt">Please enter mobile number.</small><br/>
+                <small class="hint">Mobile number is essential for keeping track of student’s progress.</small>
+
+                <ion-item no-padding>
+                    <ion-label position="floating">Country</ion-label>
+                    <ion-input type="text" value={{reg_data.country_name}} readonly></ion-input>
+                </ion-item>
+
+                <br/>
+               <h4>Student Limit: {{reg_data.children}}</h4>
+               <div *ngFor="let i of temp_array; let j=index" style="margin-bottom:40px;">
+                <small>Student {{j+1}}</small>
+                        <ion-item no-padding>
+                            <ion-label position="floating">Student's Name</ion-label>
+                            <ion-input formControlName="student" type="text"></ion-input>
+                        </ion-item>
+                         <small class="error_msg" *ngIf="!form.controls.student.valid  && submitAttempt">Please enter student's name.</small>
+         
+                        <ion-item no-padding>
+                            <ion-label position="floating">Year/Grade</ion-label>
+                            <ion-select  formControlName="grade" [(ngModel)]="grades[0]">
+                                <ion-select-option value="{{grade}}" *ngFor="let grade of grades">{{grade}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+         
+                        <ion-item no-padding>
+                            <ion-label position="floating">School/Corporate/Tutor Link</ion-label>
+                            <ion-input formControlName="sct" type="text"></ion-input>
+                        </ion-item>
+                        <small class="hint">If you have received any link from your school/tutor/corporate, please provide, otherwise, leave it blank</small>         
+               </div>
+                <br/><br/>
+                <div class="ion-text-center">
+                    <ion-button class="btn_next" (click)="save()">Submit</ion-button>
+                </div>
+            </form>           
+    </div>
+</ion-content>

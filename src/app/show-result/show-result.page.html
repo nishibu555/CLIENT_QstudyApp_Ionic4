@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+      <ion-title slot="start">
+          <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+      </ion-title>
+      <div class="heade_extra_menu" slot="end">
+          <div>
+              <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+          </div>
+      </div>
+      <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="result">
+     <h4 *ngIf="module.type==1">Index</h4>
+     <p>{{user.name}} obtained {{obtained_mark}} out of {{total_mark}}</p>
+     <div>
+         <span  style="margin: 15px;"  *ngFor="let w of wrong_ans" (click)="revise_wrong_ans(w)">{{w}}</span>
+         <p *ngIf="wrong_ans.length>0">In above question(s) you have answered wrong. Please error revision them</p>
+         <p *ngIf="wrong_ans.length==0" (click)="save_final_result()">Finish</p>
+     </div>
+  </div>
+</ion-content>

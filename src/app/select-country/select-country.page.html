@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding text-center>
+    <br/>
+    <br/>
+    <ion-item>
+        <ion-label>Country</ion-label>
+        <ion-select (ionChange)="selected_country($event)">
+            <ion-select-option value="{{country.id}}" *ngFor="let country of countries">{{country.countryName}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <br/> <br/>
+    <ion-button class="btn_next" routerLink="/select-course">
+        <ion-icon name="arrow-dropright"></ion-icon> Next</ion-button>
+</ion-content>

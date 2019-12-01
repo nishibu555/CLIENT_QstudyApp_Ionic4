@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+  
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-grid>
+      <!-- seacrh bar+pannel for subject list is for module type 1 and 2 (qstudy and tutor) , not for special exam and assignment -->
+       <!-- for user type 7 there will be a subject type list along with subject list -->
+
+      <!-- module type == 1 (tutorial)
+      usert type=7(qstudy)   -->
+
+      <ion-row *ngIf="module_type==1 || module_type==2">
+        <ion-col size="3">
+            <span class="heading">Country</span>
+            <ion-select [(ngModel)]="user_info.countryName">
+                <ion-select-option value={{user_info.countryName}} selected>{{user_info.countryName}}</ion-select-option>
+              </ion-select>
+        </ion-col>
+        <ion-col size="3">
+            <span class="heading">Subject</span>
+          <ion-select placeholder="Subject" (ionChange)="selected_subject($event)" >
+            <ion-select-option *ngFor="let subject of subjects" value="{{subject.subject_id}}">{{subject.subject_name}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col size="3">
+            <span class="heading">Chapter</span>
+          <ion-select placeholder="Chapter" (ionChange)="selected_chapter($event)" >
+            <ion-select-option *ngFor="let chapter of chapters" value=""></ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col size="3" style="text-align: right;">
+          <ion-icon name="search" style="zoom: 2;" color="primary"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      
+      
+      <ion-row style="background: #0078ae; color:white; text-align: center;padding: 10px;">
+          <ion-col size="12">{{tutor_info.tutor_name}}</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="(module_type==1 || module_type==2) && tutor_info.user_type==7">
+          <ion-col size="12" *ngFor="let reg_course of registered_courses" (click)="onRegisteredCourse(reg_course.course_info.id)">{{reg_course.course_info.courseName}}</ion-col>
+          <ion-col size=12>
+            <span>All|</span>
+            <span *ngFor="let subject of subjects_of_course" style="margin-left:20px;" (click)="onSubject(subject.subject_id, subject.course_id)">{{subject.subject_name}}|</span>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12"  *ngFor="let module of modules_of_subject; let i=index"  routerLink="/get_tutor_tutorial_module/{{module.id}}">{{module.moduleName}}</ion-col>
+      </ion-row> 
+    
+  </ion-grid>
+</ion-content>
+  

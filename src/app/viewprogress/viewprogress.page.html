@@ -1,0 +1,132 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <h3 text-center>Progress by Student</h3>
+    <div class="topo_search">
+        <form [formGroup]="form">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Grade/Year/Lavel</ion-label>
+                            <ion-select formControlName="grade"  [(ngModel)]="progress_course_info.grade">
+                                <ion-select-option value="{{progress_course_info.grade}}">{{progress_course_info.grade}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Module Type</ion-label>
+                            <ion-select formControlName="module" placeholder="Select">
+                                <ion-select-option *ngFor="let g of progress_course_info.module_types" value="{{g.id}}">{{g.module_type}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Student’s name</ion-label>
+                            <ion-select formControlName="name" [(ngModel)]="progress_course_info.name">
+                                <ion-select-option selected value={{progress_course_info.name}}>{{progress_course_info.name}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-button color="primary" expand="full" (click)="submit()">Detail Exam Score</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </form>
+    </div>
+    <div class="suarch_result">
+        <div class="suarch_result_filter">
+            <form>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label>Show</ion-label>
+                                <ion-select>
+                                    <ion-select-option>10</ion-select-option>
+                                    <ion-select-option>25</ion-select-option>
+                                    <ion-select-option selected>50</ion-select-option>
+                                    <ion-select-option>100</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-input name="loginname" type="text" placeholder=" Search" ngModel required></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
+        </div>
+        <div class="suarch_result_data_list">
+
+            <div class="suarch_result_data_items" *ngFor="let d of data">
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ss_heading">Module Name</ion-col>
+                    <ion-col>
+                        <a href="#">Check repetition</a>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ss_heading"> Module Type</ion-col>
+                    <ion-col>{{d.moduletype}}</ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ss_heading">Answer Date</ion-col>
+                    <ion-col>{{d.answerDate}}</ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ss_heading"> Answer Time</ion-col>
+                    <ion-col>{{d.answerTime | date: 'H:mmaa'}}</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="ss_heading">Time Taken</ion-col>
+                    <ion-col>{{d.timeTaken}}</ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ss_heading">Original Mark</ion-col>
+                    <ion-col>{{d.originalMark}}</ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ss_heading"> Student Mark </ion-col>
+                    <ion-col>{{d.studentMark}}</ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ss_heading">Percentage</ion-col>
+                    <ion-col>{{d.percentage}}%</ion-col>
+                </ion-row>
+            </div>
+        </div>
+
+        <div class="search_footer">
+            <ion-row>
+                <ion-col>Showing 1 to 10 of 19 entries</ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+        </div>
+    </div>
+</ion-content>

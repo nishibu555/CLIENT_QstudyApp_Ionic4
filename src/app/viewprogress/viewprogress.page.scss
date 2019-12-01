@@ -1,0 +1,27 @@
+ion-content {
+    padding: 30px 20px;
+    h3 {
+        color: #000066;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 20px;
+    }
+    .suarch_result_filter {
+        background: #efefef;
+    }
+    .suarch_result_data_list {
+        .suarch_result_data_items {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            .ss_heading {
+                background: #213977;
+                color: #fff;
+                font-weight: bold;
+                padding: 10px;
+                border-bottom: 1px solid #192e62;
+                text-align: right;
+            }
+        }
+    }
+}

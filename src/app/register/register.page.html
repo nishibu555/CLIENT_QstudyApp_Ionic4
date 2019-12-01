@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="personal-card" (click)="next(1)">
+        <ion-card-content>Year/Grade 1-12 Student/Parent </ion-card-content>
+    </ion-card>
+    <ion-card class="personal-card" (click)="next(2)">
+        <ion-card-content>Upper Level Student </ion-card-content>
+    </ion-card>
+</ion-content>

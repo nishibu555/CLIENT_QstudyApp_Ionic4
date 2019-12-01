@@ -1,0 +1,53 @@
+<ion-content padding>
+    <!-- <form #form="ngForm" (ngSubmit)="login(form)"> -->
+    <form [formGroup]="form">
+        <ion-grid>
+            <ion-row justify-content-center>
+                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                    <div text-center>
+                        <h3><img alt="logo" id="header_logo" height="100" src="assets/images/logo_signup.png"></h3>
+                    </div>
+                    <div text-center>
+                        <h3>Login</h3>
+                    </div>
+                    <div>
+                        <ion-item no-padding>
+                            <!-- <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input> -->
+                            <ion-input formControlName="email" type="email" placeholder="your@email.com"></ion-input>
+                        </ion-item>
+                        <small style="color:#fc7303" *ngIf="!form.controls.email.valid  && submitAttempt">Please enter a valid email.</small>
+                        
+                        <ion-item no-padding>
+                            <!-- <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input> -->
+                            <ion-input formControlName="password" type="password"  placeholder="Password"></ion-input>
+                        </ion-item>
+                        <small style="color:#fc7303" *ngIf="!form.controls.password.valid  && submitAttempt">Please enter password.</small>
+
+                    </div>
+                    
+                    <br>
+                    <small style="color:#fc7303" *ngIf="notMatched && submitAttempt">Credentials not found !</small>
+                    
+                    <br/>
+                    <div>
+                        <!-- <ion-button routerLink='/home' size="large" type="submit" expand="block">Login</ion-button> --> 
+                        <ion-button (click)="onSubmit()" size="large"  expand="block">Login</ion-button>
+                    </div>
+                    <br/><br/>
+                </ion-col>
+            </ion-row>
+
+            <div text-center>
+                If you don't have an account, please <a routerLink='/register/signup'>
+                Signup</a> or <a routerLink='/register/trial'>
+                Try free</a> first!
+            </div>
+
+        </ion-grid>
+    </form>
+    <div text-center>
+        <br/>
+        <br/>
+        <h3><img alt="logo" id="header_logo" src="assets/images/m.bottom.png"></h3>
+    </div>
+</ion-content>

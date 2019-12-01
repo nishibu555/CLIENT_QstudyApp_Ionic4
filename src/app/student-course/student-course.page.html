@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button text=""></ion-back-button>
+      </ion-buttons>
+      <ion-title slot="start">
+          <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+      </ion-title>
+      <div class="heade_extra_menu" slot="end">
+          <div>
+              <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+          </div>
+      </div>
+
+      <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ss-card">
+      <ion-card-content>
+          <ion-list>
+              <ion-item no-padding routerLink="/module/tutor-list/1"> Tutorial </ion-item>
+              <ion-item no-padding routerLink="/module/tutor-list/2"> Everyday Study </ion-item>
+              <ion-item no-padding routerLink="/module/tutor-list/3"> Special Exam </ion-item>
+              <ion-item no-padding routerLink="/module/tutor-list/4"> Assignment </ion-item>
+          </ion-list>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

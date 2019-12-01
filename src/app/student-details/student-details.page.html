@@ -1,0 +1,87 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card class="ss-card">
+        <ion-card-header>
+            <ion-icon name="arrow-dropdown"></ion-icon> My Details
+        </ion-card-header>
+        <ion-card-content>
+
+            <form [formGroup]="form">
+                <div>
+                    <ion-item no-padding>
+                        <ion-label>User name</ion-label>
+                        <ion-input formControlName="username" type="text" value="{{user.name}}" readonly></ion-input>
+                    </ion-item>
+                    <ion-item no-padding>
+                        <ion-label>Login Name</ion-label>
+                        <ion-input formControlName="loginname" type="text" value="{{user.user_email}}"  readonly></ion-input>
+                    </ion-item>
+                    <ion-item no-padding>
+                        <ion-label>Password</ion-label>
+                        <ion-input formControlName="password" type="password" placeholder="Password" required></ion-input>
+                    </ion-item>
+
+                    <ion-item no-padding>
+                        <ion-label>Confirm Password</ion-label>
+                        <ion-input formControlName="confirm_password" type="password" placeholder="Confirm Password"  required></ion-input>
+                    </ion-item>
+                    <small style="color:#fc7303" *ngIf="error_msg != ''">{{error_msg}}</small>
+
+                    <ion-item no-padding>
+                        <ion-label>Country</ion-label>
+                        <ion-input formControlName="country" type="text" value="{{student_detail.country}}"  readonly></ion-input>
+                    </ion-item>
+
+                    <ion-item no-padding>
+                        <ion-label>Grade/Year/Level</ion-label>
+                        <ion-select (ionChange)="selected_grade($event)" formControlName="student_grade"  [(ngModel)]="student_detail.student_grade">
+                              <ion-select-option *ngFor="let grade of grades" value="{{grade}}">
+                                  {{grade}}
+                              </ion-select-option>
+                        </ion-select>
+                        <!-- <ion-input formControlName="student_grade" type="text" value="{{student_detail.student_grade}}"></ion-input> -->
+                    </ion-item>
+                    <ion-item no-padding>
+                        <!-- <ion-label>Courses</ion-label> -->
+                        <div class="course">
+                            <p>Courses</p>
+                            <span *ngFor="let course of student_detail.student_course"> {{course.courseName}}, </span>
+                        </div>
+                    </ion-item>
+                    <ion-item no-padding>
+                        <ion-label>Ref.Link No</ion-label>
+                        <ion-input formControlName="RefLinkNo" type="text" value="{{student_detail.SCT_link}}" readonly *ngIf="student_detail.SCT_link != ''"></ion-input>
+                    </ion-item>
+
+                </div>
+                <br/>
+
+                <div text-center>
+                    <ion-button color="primary" routerLink="/home">Home</ion-button>
+                    <ion-button color="light" (click)="onSubmit()">Update</ion-button>
+                </div>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

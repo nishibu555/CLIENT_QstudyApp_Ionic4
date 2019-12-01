@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card class="ss-card">
+        <ion-card-header>
+            <ion-icon name="arrow-dropdown"></ion-icon> My Account
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item no-padding routerLink="/student-details">
+                    <ion-icon slot="start" name="settings"></ion-icon> Setting
+                </ion-item>
+                <ion-item no-padding routerLink="/student-upload-photo">
+                    <ion-icon slot="start" name="images"></ion-icon> Logo/Photo
+                </ion-item>
+                <ion-item no-padding routerLink="/my-enrollment">
+                    <ion-icon slot="start" name="list"></ion-icon> Enrollment List
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

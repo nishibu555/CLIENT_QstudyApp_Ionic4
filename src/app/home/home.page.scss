@@ -1,0 +1,50 @@
+.welcome-card img {
+    max-height: 35vh;
+    overflow: hidden;
+}
+
+ion-header {
+    ion-toolbar {
+        ion-title {
+            padding-left: 10px;
+        }
+        .title-md {
+            padding-left: 10px !important;
+        }
+    }
+}
+
+ion-content {
+    .personal-card {
+        background: #006F8C;
+        ion-card-content {
+            text-align: center;
+            font-size: 22px;
+            color: #fff
+        }
+    }
+    .progress-card {
+        background: #EB1F28;
+        ion-card-content {
+            text-align: center;
+            font-size: 22px;
+            color: #fff
+        }
+    }
+    .course-card {
+        background: #EB1F28 !important;
+        ion-card-content {
+            text-align: center;
+            font-size: 22px;
+            color: #fff
+        }
+    }
+    .ss_bottomimg {
+        img {
+            width: 195px;
+            margin: 10px auto;
+            float: none !important;
+            display: inherit;
+        }
+    }
+}

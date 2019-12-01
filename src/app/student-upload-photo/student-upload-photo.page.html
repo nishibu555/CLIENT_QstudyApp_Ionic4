@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start">
+            <img alt="logo" id="header_logo" height="40" float-left src="assets/images/logo_signup.png">
+        </ion-title>
+        <div class="heade_extra_menu" slot="end">
+            <!-- <div> Back </div> -->
+            <div>
+                <ion-icon name="videocam"></ion-icon> Video Help <span>1</span>
+            </div>
+        </div>
+
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="blue_photo bottom10">
+        <a routerLink="/home">Logo / Photo</a>
+    </div>
+
+    <ion-img *ngIf="base64img != ''"  [src]=base64img class="square"></ion-img>
+
+    <div class="upload_photo" (click)="openActionSheet()">
+        <ion-icon name="cloud-upload"></ion-icon>
+        <h4>Choose photo to Upload</h4>
+    </div>
+    <div text-center>
+        <ion-button class="btn_next" (click)="saveImage()">
+            <ion-icon name="paper-plane"></ion-icon> submit
+        </ion-button>
+    </div>
+</ion-content>

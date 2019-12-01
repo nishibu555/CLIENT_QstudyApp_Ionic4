@@ -1,0 +1,52 @@
+.mark_col{
+    border: 0.5px solid rgb(218, 216, 216);
+}
+
+.ans_input{
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
+
+ion-card-header{
+    background: #f5f5f5;
+    padding: 5px !important;
+}
+
+
+ion-card-title{
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.right{
+    float: right;
+    font-size: 13px;
+    color:#2198c5;
+}
+
+.toolbar2{
+    //background-color: gray;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.links{
+    background-color:#f9f9f9;
+    color:#2198c5;
+}
+.mcq{
+    padding:10px;
+}
+.mc_options{
+    margin-bottom: 20px;
+}
+.mc_image{
+    padding: 20px;
+}
+.mc_letter{
+   font-size: 20px;
+   font-weight: 600;
+   color:  #2198c5;
+   float: left;
+}
